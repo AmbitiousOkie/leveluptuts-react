@@ -12,15 +12,26 @@
     <script type="text/babel">
 
         var HelloWorld = React.createClass({
+
+          propTypes: {
+            name: React.PropTypes.string.isRequired
+          },
+
+          getDefaultProps: function(){
+            return {
+              name: 'Scott'
+            }
+          },
+
           render: function() {
             return(
-              <h1>Hello there, children.</h1>
+              <h1>Hello there, {this.props.name}.</h1>
             )
           }
         });
 
       ReactDOM.render(
-        <HelloWorld />,
+        <HelloWorld name="Scottie"/>,
         document.getElementById('area')
       );
     </script>
