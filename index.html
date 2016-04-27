@@ -11,10 +11,42 @@
     <div id="area"></div>
     <script type="text/babel">
 
+
+        // HelloWord --- Component ----------------------------------------------------------------
         var HelloWorld = React.createClass({
 
           propTypes: {
-            name: React.PropTypes.string.isRequired
+            name: React.PropTypes.string,
+            isPerson: React.PropTypes.bool
+          },
+
+          getDefaultProps: function(){
+            return {
+              name: 'Scott'
+            }
+          },
+
+          render: function() {
+            var greeting = "World";
+
+            if (this.props.isPerson) {
+              greeting = (<Person name={this.props.name} />)
+            }
+
+            return(
+              <h1>Hello {greeting}</h1>
+            )
+          }
+        });
+
+
+
+        // Person --- Component ----------------------------------------------------------------
+        var Person = React.createClass({
+
+          propTypes: {
+            name: React.PropTypes.string,
+
           },
 
           getDefaultProps: function(){
@@ -25,13 +57,16 @@
 
           render: function() {
             return(
-              <h1>Hello there, {this.props.name}.</h1>
+              <span>{this.props.name}</span>
             )
           }
         });
 
+
+
+      // Document Render
       ReactDOM.render(
-        <HelloWorld name="Scottie"/>,
+        <HelloWorld name="Tim" isPerson={false} />,
         document.getElementById('area')
       );
     </script>
